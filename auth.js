@@ -61,8 +61,8 @@ const refreshToken = async function(refreshToken, res){
         res.cookie('jid', createRefreshToken(response[1], response[2], response[3]), {
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7days 24hours 60minutes 60secs 1000ms
             httpOnly: true,
-            secure: true
-            
+            sameSite: 'none',
+            secure: true  
         });
 
         response[0].accessToken = createAccessToken(response[1], response[2], response[3]);

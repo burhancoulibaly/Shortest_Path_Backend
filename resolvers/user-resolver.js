@@ -34,8 +34,8 @@ const resolvers = {
                     res.cookie('jid', createRefreshToken(username, response[1], "authenticated"), {
                         maxAge: 7 * 24 * 60 * 60 * 1000, // 7days 24hours 60minutes 60secs 1000ms
                         httpOnly: true,
+                        sameSite: 'none',
                         secure: true
-                        
                     });
 
                     return {
@@ -66,8 +66,8 @@ const resolvers = {
                 res.cookie('jid', createRefreshToken(username, response[1], "authenticated"), {
                     maxAge: 7 * 24 * 60 * 60 * 1000, // 7days 24hours 60minutes 60secs 1000ms
                     httpOnly: true,
+                    sameSite: 'none',
                     secure: true
-                    
                 });
 
                 if(response[0]){
@@ -96,8 +96,8 @@ const resolvers = {
                 res.cookie('jid', createRefreshToken(username, response[1], "guest"), {
                     maxAge: 7 * 24 * 60 * 60 * 1000, // 7days 24hours 60minutes 60secs 1000ms
                     httpOnly: true,
+                    sameSite: 'none',
                     secure: true
-                    
                 });
                 
                 if(response[0]){
