@@ -32,6 +32,12 @@ const apolloServer = new ApolloServer({
     context: ({ req, res }) => ({ req, res })
 });
 
+app.set('trust proxy', 1);
+app.use({
+    cookie: {
+        sameSite: 'strict'
+    }
+});
 app.use(cookieParser(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
