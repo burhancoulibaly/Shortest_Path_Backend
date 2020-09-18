@@ -12,14 +12,15 @@ const express = require('express'),
       cookieParser = require("cookie-parser");
 
 // let whitelist = ['http://localhost:3000', 'https://localhost:3000/graphql', 'http://localhost:4200'];
-let whitelist = ['https://shortestpathapp.herokuapp.com/'];
+let whitelist = ['https://shortestpathapp.herokuapp.com'];
 let corsOptions = {
     origin: function (origin, callback) {
-      if (whitelist.indexOf(origin) !== -1) {
-        callback(null, true)
-      } else {
-        callback(new Error('Not allowed by CORS'))
-      }
+        console.log(origin)
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
     },
     credentials: true
 }
