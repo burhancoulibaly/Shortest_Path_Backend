@@ -18,7 +18,7 @@ if(!process.env.NODE_ENV || process.env.NODE_ENV){
 }else{
     whitelist = ['https://shortestpathapp.herokuapp.com'];
 }
-
+console.log(whitelist);
 let corsOptions = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1) {
