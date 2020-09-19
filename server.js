@@ -13,12 +13,12 @@ const express = require('express'),
 
 let whitelist;
 
-if(!process.env.NODE_ENV || process.env.NODE_ENV){
+if(!process.env.NODE_ENV || process.env.NODE_ENV === "development"){
     whitelist = ['http://localhost:3000', 'https://localhost:3000/graphql', 'http://localhost:4200'];
 }else{
     whitelist = ['https://shortestpathapp.herokuapp.com'];
 }
-console.log(whitelist);
+
 let corsOptions = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1) {
