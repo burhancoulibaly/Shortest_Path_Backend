@@ -1,6 +1,6 @@
 
 const dotenv = require('dotenv'),
-      envFile = process.env.NODE_ENV ? `../.env.${process.env.NODE_ENV}` : '.env';
+      envFile = process.env.NODE_ENV ? `./.env.${process.env.NODE_ENV}` : '.env';
 
 dotenv.config({ path: envFile });
 

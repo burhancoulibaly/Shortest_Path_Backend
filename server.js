@@ -11,11 +11,16 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       cookieParser = require("cookie-parser");
 
-// let whitelist = ['http://localhost:3000', 'https://localhost:3000/graphql', 'http://localhost:4200'];
-let whitelist = ['https://shortestpathapp.herokuapp.com'];
+let whitelist;
+
+if(!process.env.NODE_ENV || process.env.NODE_ENV){
+    whitelist = ['http://localhost:3000', 'https://localhost:3000/graphql', 'http://localhost:4200'];
+}else{
+    whitelist = ['https://shortestpathapp.herokuapp.com'];
+}
+
 let corsOptions = {
     origin: function (origin, callback) {
-        console.log(origin)
         if (whitelist.indexOf(origin) !== -1) {
             callback(null, true)
         } else {
