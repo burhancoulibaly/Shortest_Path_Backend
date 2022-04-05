@@ -11,13 +11,7 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       cookieParser = require("cookie-parser");
 
-let whitelist;
-
-if(!process.env.NODE_ENV || process.env.NODE_ENV === "development"){
-    whitelist = ['http://localhost:3000', 'https://localhost:3000/graphql', 'http://localhost:4200'];
-}else{
-    whitelist = ['https://shortestpathapp.herokuapp.com'];
-}
+let whitelist = ['https://shortestpathapp.herokuapp.com'];
 
 let corsOptions = {
     origin: function (origin, callback) {
@@ -44,10 +38,14 @@ app.use(bodyParser.json());
 app.use(authenticateUser);
 app.use(cors(corsOptions));
 
-apolloServer.applyMiddleware({ 
-    app,
-    cors: false
-});
+(async () => {
+    await apolloServer.start();
+  
+    apolloServer.applyMiddleware({ 
+      app,
+      cors: corsOptions
+    });
+  })();
 
 server.listen(process.env.PORT || 3000);
 console.log(`Server listening on port: ${process.env.PORT || 3000}`);

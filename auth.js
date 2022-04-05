@@ -26,7 +26,7 @@ const authenticateUser = async (req, res, next) => {
         if(error.toString().split(":")[1].replace(" ", "") == "jwt expired"){
             try {
                 const token = (await refreshToken(req.cookies.jid, res)).accessToken;
-                console.log(token);
+
                 const payload = verify(token, process.env.ACCESS_TOKEN_SECRET);
 
                 req.payload = {
